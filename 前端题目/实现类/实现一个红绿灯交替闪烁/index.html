@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>红绿灯</title>
+    <style>
+        #circle {
+            background-color: green;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="circle"></div>
+    <button onclick="pause()">暂停</button>
+    <button onclick="recovery()">恢复</button>
+    <script>
+        function delay(duration) {
+            return new Promise((resolve, reject) => {
+                setTimeout(resolve, duration)
+            })
+        }
+
+        class TrafficLight {
+            constructor(initStates) {
+                this.stateLength = initStates.length
+                this.states = initStates
+                this.startIndex = 0 // 暂停之后保存的index，需要存放在这里
+                this.pauseStatus = false
+            }
+            setStartIndex(index) {
+                this.startIndex = index
+            }
+            setStartIndexToZero() {
+                this.startIndex = 0
+            }
+            pauseProcess() {
+                this.pauseStatus = true
+            }
+            recoveryProcess() {
+                this.pauseStatus = false
+                this.startWork()
+            }
+            async startWork() {
+                    for (let item of this) {
+                        // 操作可以封装到函数，传递进来
+                        document.getElementById("circle").style.backgroundColor = item.color
+                        await delay(item.duration)
+                    }
+                }
+                *[Symbol.iterator]() {
+                    const max = Number.POSITIVE_INFINITY
+                    const states = this.states
+                    for (let i = this.startIndex; i < max; i++) {
+                        const index = i % this.stateLength
+                        // 在这里控制暂停 or 停止
+                        // core code
+                        if (this.pauseStatus) {
+                            this.startIndex = index === 0 ? (this.stateLength - 1) : (index - 1)
+                            break
+                        }
+                        yield this.states[index]
+                    }
+                }
+        }
+
+        var trafficLight = new TrafficLight([{
+                color: "green",
+                duration: 2000
+            },
+            {
+                color: "yellow",
+                duration: 3000
+            },
+            {
+                color: "red",
+                duration: 4000
+            }
+        ])
+
+        trafficLight.startWork()
+        function pause(params) {
+            trafficLight.pauseProcess()
+        }
+        function recovery(params) {
+            trafficLight.recoveryProcess()
+        }
+    </script>
+</body>
+
+</html>
