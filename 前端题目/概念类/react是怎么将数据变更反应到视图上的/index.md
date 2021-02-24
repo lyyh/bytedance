@@ -1,0 +1,3 @@
+## react是怎么将数据变更反应到视图上的
+想问的是应该是react如何更新的问题，react架构围绕着 scheduler reconcile renderer 来进行。更新一个state的时候调用render，构建虚拟dom，与 current fiber做对比生成 workInProgress fiber，这两个Fiber树都存放在内存中。
+然后workInProgress Fiber切换成current Fiber应用到真实dom就达到了更新的目的.
