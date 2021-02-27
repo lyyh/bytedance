@@ -1,0 +1,1 @@
+esm规范是es6原生支持的，很多浏览器开始支持，类似commonjs的写法和同、异步加载机制能通过设置type=module，用于html中，而且在node中也开始支持啦！
