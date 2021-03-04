@@ -8,18 +8,21 @@
 },callbackThis)
  */
 
-Array.prototype.map = function (fn, callbackThis) {
-    var res = []
-    let CBThis = callbackThis || null;
-    this.reduce(function (acc, cur, idx, arr) {
-        res.push(fn.call(CBThis, cur, idx, arr))
-    }, null)
-    return res
+Array.prototype.map = function(fn,callbackThis){
+    if(typeof fn !== 'function'){
+        throw new TypeError('callback is not function')
+    }
+    var CBThis = callbackThis || undefined
+    return this.reduce(function (acc,cur,index,arr) {
+        console.log(acc)
+        acc[index] = fn.call(CBThis,cur,index,arr)
+        return acc
+    },[])
 }
 
 var arr = [1,2,3]
 console.log(arr.map(function(val,idx){
-    // console.log(this)
     console.log('val',val)
+    console.log(this)
     return val * 2
-},globalThis))
+},{}))
