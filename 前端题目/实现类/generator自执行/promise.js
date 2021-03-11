@@ -1,11 +1,5 @@
 function generatorAutoRun(gen){
     var g = gen()
-    // while(!res.done){
-    //     res.value.then(data=>{
-    //         console.log('data')
-    //         res = g.next(data)
-    //     })
-    // }
     function next(data){
         var res = g.next(data)
         if(res.done){
