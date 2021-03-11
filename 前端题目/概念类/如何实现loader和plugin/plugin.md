@@ -1,2 +1,4 @@
 ## 本质
-通过监听Webpack在各生命周期广播出来的事件，在特定的时机对使用webpack提供的api改变输出结果。
+通过监听Webpack在各生命周期广播出来的事件，在特定的时机使用webpack提供的api改变输出结果。
+
+plugin是一个扩展器，它丰富了webpack本身，基于tapable事件机制工作，会监听webpack打包过程中的某些时间节点，执行广泛的任务。资源管理、bundle文件优化等操作。
