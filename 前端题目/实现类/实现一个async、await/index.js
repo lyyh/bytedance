@@ -24,6 +24,32 @@ function asyncToGenerator(generatorFunc) {
     }
 }
 
+function asyncToFunction(generatorFunc) {
+    return function(){
+        var gen = generatorFunc.apply(this,arguments)
+        return new Promise(function (resolve, reject) {
+            function step(action,args) {
+                var generatorResult = null
+                try {
+                    generatorResult = gen[action](args)
+                } catch (err) {
+                    return reject(err)
+                }
+                var {
+                    done,
+                    value
+                } = generatorResult
+                if(!done){
+                    return Promise.resolve(value).then(res => step('next',res),err => step('throw',err))
+                }else{
+                    return resolve(value)
+                }
+            }
+            step('next')
+        })
+    }
+}
+
 var sleep = function () {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -33,11 +59,11 @@ var sleep = function () {
     })
 }
 var exe = asyncToGenerator(function* () {
-    try{
+    try {
         var val = yield sleep()
         return val
-    }catch(err){
-        console.log('err',err)
+    } catch (err) {
+        console.log('err', err)
     }
 })
 
