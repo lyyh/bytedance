@@ -1,5 +1,5 @@
 ## 1xx
-1xx：请求已经接收到，需要进一步处理才能完成，HTTP/1.0 不支持
+1xx：请求已经接收到，需要进一步处理才能完成，HTTP/1.0 不支持(请求的中间状态、还需要后续请求)
 100 Continue：上传大文件前使用
 101 Switch Protocols：协议升级使用
 102 Processing：服务器已经收到并正在处理请求，但无响应可用
@@ -29,7 +29,7 @@
 ## 5xx：服务器端出现错误
 500 Internal Server Error：服务器内部错误，且不属于以下错误类型
 502 Bad Gateway：代理服务器无法获取到合法响应
-503 Service Unavailable：服务器资源尚未准备好处理当前请求
+503 Service Unavailable：服务器资源尚未准备好处理当前请求（服务器繁忙）
 505 HTTP Version Not Supported：请求使用的 HTTP 协议版本不支持
 
 ## 参考
