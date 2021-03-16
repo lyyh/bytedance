@@ -4,9 +4,12 @@
 
 ## 什么是loader
 背景：webpack默认只能处理javascript模块，如果需要处理其他类型的文件，需要相应的loader进行转换处理。比如像css、图片，webpack不能直接处理需要loader转换。
+本质：是一个node函数模块，因为webpack本省只能理解js和json两种文件格式，所以利用loader将非js文件资源转换成js模块,利用webpack的打包能力进行处理。
 
-本质上是一个node模块，将rule规则匹配的文件代码传入，经过ast解析，加工返回一段新的代码。
+将rule规则匹配的文件代码传入，经过ast解析，加工返回一段新的代码。
 
+## loader
+css-loader、style-loader、postcss-loader、sass-loader
 ## 其他背景知识
 1. @babel/parser 将源代码解析成 AST
 2. @babel/traverse 对AST节点进行递归遍历，生成一个便于操作、转换的path对象

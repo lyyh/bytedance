@@ -6,8 +6,9 @@ Function.prototype.myApply = function (context,args) {
     var fn = Symbol()
 
     context[fn] = meFn
-    context[fn](...args)
+    var res = context[fn](...args)
     delete context[fn]
+    return res
 }
 
 var fn = function () {
