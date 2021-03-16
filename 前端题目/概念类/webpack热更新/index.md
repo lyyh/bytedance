@@ -18,3 +18,9 @@ webpack-dev-middleware 是一个封装器(wrapper)，它可以把 webpack 处理
 6. HotModuleReplacement.runtime 是客户端 HMR 的中枢。它接收到上一步传递给他的新模块的 hash 值，它通过 JsonpMainTemplate.runtime 向 server 端发送 Ajax 请求，服务端返回一个 json（manifest），该 json 包含了所有要更新的模块的 hash 值，获取到更新列表后，该模块再次通过 jsonp 请求，获取到最新的模块代码。这就是上图中 7、8、9 步骤。
 7. 在该步骤中，HotModulePlugin 将会对新旧模块进行对比，决定是否更新模块，在决定更新模块后，检查模块之间的依赖关系，更新模块的同时更新模块间的依赖引用。
 8. 最后一步，当 HMR 失败后，回退到 live reload 操作，也就是进行浏览器刷新来获取最新打包代码。
+
+## 参考连接
+Webpack HMR 原理解析 - 冉四夕的文章 - 知乎
+https://zhuanlan.zhihu.com/p/30669007
+
+https://www.infoq.cn/article/dioufdrtt3rocojvlrcl  看完这篇，再也不怕被问 Webpack 热更新
