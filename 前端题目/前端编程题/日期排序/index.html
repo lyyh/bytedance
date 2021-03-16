@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th class="date">日期</th>
+                <th class="total">总次数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2017年10月23日</td>
+                <td>68，112</td>
+            </tr>
+            <tr>
+                <td>2017年8月6日</td>
+                <td>69，020</td>
+            </tr>
+            <tr>
+                <td>2017年11月11日</td>
+                <td>69，433</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var list = document.querySelectorAll('tbody tr')
+        // console.log(([].slice.call(list)))
+        // ([1,2,3]).sort(function (a,b) {
+        //     return a - b
+        // })
+        console.log($(list))
+        $(list).sort(function (pre,next) {
+            // console.log(pre)
+            return pre - next
+        })
+        // ([].slice.call(list)).sort(function (pre,next) {
+        //     // console.log(pre)
+        //     return -1
+        // })
+    </script>
+</body>
+
+</html>
