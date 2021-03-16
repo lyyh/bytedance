@@ -24,3 +24,6 @@ Webpack HMR 原理解析 - 冉四夕的文章 - 知乎
 https://zhuanlan.zhihu.com/p/30669007
 
 https://www.infoq.cn/article/dioufdrtt3rocojvlrcl  看完这篇，再也不怕被问 Webpack 热更新
+
+探秘 React Hot Loader - GilbertSun的文章 - 知乎
+https://zhuanlan.zhihu.com/p/34193549
