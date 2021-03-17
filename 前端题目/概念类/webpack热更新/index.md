@@ -19,10 +19,6 @@ webpack-dev-middleware 是一个封装器(wrapper)，它可以把 webpack 处理
 7. 在该步骤中，HotModulePlugin 将会对新旧模块进行对比，决定是否更新模块，在决定更新模块后，检查模块之间的依赖关系，更新模块的同时更新模块间的依赖引用。
 8. 最后一步，当 HMR 失败后，回退到 live reload 操作，也就是进行浏览器刷新来获取最新打包代码。
 
-<<<<<<< HEAD
-## 
-https://zhuanlan.zhihu.com/p/30669007
-=======
 ## 参考连接
 Webpack HMR 原理解析 - 冉四夕的文章 - 知乎
 https://zhuanlan.zhihu.com/p/30669007
@@ -31,4 +27,3 @@ https://www.infoq.cn/article/dioufdrtt3rocojvlrcl  看完这篇，再也不怕�
 
 探秘 React Hot Loader - GilbertSun的文章 - 知乎
 https://zhuanlan.zhihu.com/p/34193549
->>>>>>> 6fb73f73be2322c03c581565eca170eb4a1aede2
