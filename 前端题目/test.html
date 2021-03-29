@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="demo" />
+    <div id='#content'></div>
+    <script>
+        var input = document.getElementById('demo');
+        console.log("🚀 ~ file: test.html ~ line 14 ~ input", input)
+        input.addEventListener('input', function (e) {
+            console.log('oninput event ');
+            var element = e.target.value || e.srcElement.value
+            console.log("🚀 ~ file: test.html ~ line 19 ~ element", element)
+        }, false);
+
+        input.addEventListener('change', function () {
+            console.log('onchange event');
+        }, false);
+    </script>
+    <script>
+        var content = document.getElementById('#content')
+        content1 = '<script>console.log(123123)<\/script>'
+        content.innerHTML = content1
+    </script>
+    <!-- <script>
+        const store = {
+            a: '</script>'
+        }
+        </script> -->
+</body>
+
+</html>

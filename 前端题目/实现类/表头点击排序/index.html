@@ -1,0 +1,140 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>JS实现点击表头表格自动排序（含数字、字符串、日期）</title>
+    <style>
+        #tableSort {
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        #tableSort th {
+            cursor: pointer;
+            background: #eee
+        }
+
+        #tableSort tr:nth-child(even) {
+            background: #f9f9f9
+        }
+
+        #tableSort th,
+        #tableSort td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="tableSort">
+        <thead>
+            <tr>
+                <th data-type="num">工号</th>
+                <th data-type="string">姓名</th>
+                <th data-type="string">性别</th>
+                <th data-type="date">时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>07</td>
+                <td>aaaa</td>
+                <td>男</td>
+                <td>2012-12-12</td>
+            </tr>
+            <tr>
+                <td>03</td>
+                <td>mmmm</td>
+                <td>女</td>
+                <td>2013-12-16</td>
+            </tr>
+            <tr>
+                <td>01</td>
+                <td>cccc</td>
+                <td>男</td>
+                <td>2014-12-12</td>
+            </tr>
+            <tr>
+                <td>04</td>
+                <td>ffff</td>
+                <td>女</td>
+                <td>2015-12-12</td>
+            </tr>
+            <tr>
+                <td>02</td>
+                <td>bbbb</td>
+                <td>男</td>
+                <td>2016-12-18</td>
+            </tr>
+            <tr>
+                <td>06</td>
+                <td>ssss</td>
+                <td>女</td>
+                <td>2008-10-07</td>
+            </tr>
+            <tr>
+                <td>05</td>
+                <td>tttt</td>
+                <td>男</td>
+                <td>2012-07-22</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        ;(function () {
+            var tbody = document.querySelector('#tableSort').tBodies[0];
+            var th = document.querySelector('#tableSort').tHead.rows[0].cells;
+            var td = tbody.rows;
+            for (var i = 0; i < th.length; i++) {
+                th[i].flag = 1;
+                th[i].onclick = function () {
+                    sort(this.getAttribute('data-type'), this.flag, this.cellIndex);
+                    this.flag = -this.flag;
+                };
+            };
+
+            function sort(str, flag, n) {
+                var arr = [];
+                for (var i = 0; i < td.length; i++) {
+                    arr.push(td[i]);
+                };
+                arr.sort(function (a, b) {
+                    return method(str, a.cells[n].innerHTML, b.cells[n].innerHTML) * flag;
+                });
+                for (var i = 0; i < arr.length; i++) {
+                    tbody.appendChild(arr[i]);
+                };
+            };
+
+            function method(str, a, b) {
+                switch (str) {
+                    case 'num':
+                        return a - b;
+                        break;
+                    case 'string':
+                        return a.localeCompare(b);
+                        break;
+                    default:
+                        return new Date(a.split('-').join('/')).getTime() - new Date(b.split('-').join('/'))
+                            .getTime();
+                };
+            };
+        })();
+    </script>
+</body>
+
+</html>
