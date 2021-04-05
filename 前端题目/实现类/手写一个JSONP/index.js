@@ -9,7 +9,7 @@ const jsonp = ({
             query.push(`${key}=${params[key]}`)
         }
         var dataStr = `${query.join('&')}&callback=${callbackName}`
-        return `url?${dataStr}`
+        return `${url}?${dataStr}`
     }
     return new Promise(function (resolve, reject) {
         var scriptElement = document.createElement('script')
